@@ -8,16 +8,25 @@
 #include <sstream>
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include <utility>
+#include <map>
+#include <functional>
 
 namespace RLEAVRS{
 
 // Level
-enum class LogLevel {
+class LogLevel {
+public:
+    enum Level{
         INFO = 1,
         DEBUG = 2,
         WARNNING = 3,
         ERROR = 4,
         FATAL = 5
+    };
+    static const char* ToString(Level level);
+
 };
 
 // Event
@@ -25,23 +34,50 @@ class LogEvent {
 public:
     typedef std::shared_ptr<LogEvent> ptr;
     LogEvent();
+    const char* getFile() const;
+    int32_t getLine() const;
+    uint32_t getElapse() const;
+    uint32_t getThreadId() const;
+    uint32_t getFiberId() const;
+    uint64_t getTime() const;
+    const std::string& getContent() const;
 
 private:
     const char* m_file = nullptr;
-    int32_t m_line;
+    int32_t m_line = 0;
     uint32_t m_elapse = 0;
     uint32_t m_threadId = 0;
     uint32_t m_fiberId = 0;
-    uint64_t m_time;
+    uint64_t m_time = 0;
     std::string m_content;
+    LogLevel::Level m_level;
 
 };
 
 class LogFormatter {
 public:
     typedef std::shared_ptr<LogFormatter> ptr;
+    
+    void init();
+
     LogFormatter();
+    
     std::string format(LogEvent::ptr event);
+
+    
+
+public: 
+    class FormatItem {
+    public:
+        typedef std::shared_ptr<FormatItem> ptr;
+        virtual ~FormatItem() = 0;
+        virtual void format(std::ostream& os,LogEvent::ptr event) = 0;
+    };
+
+private:
+    std::string m_pattern;
+    std::vector<FormatItem::ptr> m_items;
+    bool m_error;
 
 };
 
@@ -54,12 +90,12 @@ public:
 
     virtual ~LogAppender() {};
 
-    virtual void log(LogLevel level,LogEvent::ptr event) = 0;
+    virtual void log(LogLevel::Level level,LogEvent::ptr event) = 0;
 
     void setFormatter(LogFormatter::ptr formatter);
 
 protected:
-    LogLevel m_level;
+    LogLevel::Level m_level;
     LogFormatter::ptr m_formatter;
 
 };
@@ -69,7 +105,7 @@ public:
     
     typedef std::shared_ptr<StdoutLogAppender> ptr;
 
-    void log(LogLevel level,LogEvent::ptr event) override;
+    void log(LogLevel::Level level,LogEvent::ptr event) override;
 
 };
 
@@ -79,7 +115,7 @@ public:
 
     FileLogAppender(const std::string& name);
 
-    void log(LogLevel level,LogEvent::ptr event) override;
+    void log(LogLevel::Level Level,LogEvent::ptr event) override;
 
     bool reopen();
 
@@ -98,9 +134,9 @@ public:
     
     Logger(const std::string &name = "root");
     
-    void setLevel(LogLevel level);
+    void setLevel(LogLevel::Level level);
     
-    LogLevel getLevel();
+    LogLevel::Level getLevel();
 
 
     void addAppender(LogAppender::ptr appender);
@@ -108,7 +144,7 @@ public:
     void delAppender(LogAppender::ptr appender);
 
 
-    void Log(LogLevel level, LogEvent::ptr &event);
+    void Log(LogLevel::Level level, LogEvent::ptr &event);
     
     void info(LogEvent::ptr &event);
     
@@ -123,13 +159,10 @@ public:
 
 private:
     std::string m_name;
-    LogLevel m_level;
+    LogLevel::Level m_level;
     std::list<LogAppender::ptr> m_appenders;
     
 };
-
-
-
 
 }
 
