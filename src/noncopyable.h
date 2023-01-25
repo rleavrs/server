@@ -4,6 +4,7 @@
 namespace rleavrs {
 
 class Noncopyable{
+public:
     Noncopyable() = default;
     
     ~Noncopyable() = default;
