@@ -13,7 +13,7 @@
 #include <map>
 #include <functional>
 
-namespace RLEAVRS{
+namespace rleavrs{
 
 // Level
 class LogLevel {

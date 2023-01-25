@@ -1,11 +1,11 @@
 #include "log.h"
 
-namespace RLEAVRS {
+namespace rleavrs {
 
-static const char* LogLevel::ToString(Level level){ 
+const char* LogLevel::ToString(Level level){ 
     switch(level) {
 #define XX(name) \
-    case LogLeve::name: \
+    case LogLevel::name: \
         return #name;   \
         break;
 
@@ -15,11 +15,9 @@ static const char* LogLevel::ToString(Level level){
         XX(ERROR);
         XX(FATAL);
 #undef XX
-    default: 
-        return "UNKNOW";
+        default: 
+            return "UNKNOW";
     }
-
-
 }
 
 
@@ -148,7 +146,7 @@ void LogFormatter::init() {
         XX(l, LineFormatItem),              //l:行号
         XX(T, TabFormatItem),               //T:Tab
         XX(F, FiberIdFormatItem),           //F:协程id
-        XX(N, ThreadNameFormatItem),        //N:线程名称
+        XX(N, ThreadNameFormatItem)        //N:线程名称
 #undef XX
     };
 
