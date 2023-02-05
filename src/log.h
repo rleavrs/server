@@ -15,6 +15,7 @@
 #include <unordered_set>
 
 #include "utility/singleton.h"
+#include "mutex.h"
 
 
 namespace rleavrs {
