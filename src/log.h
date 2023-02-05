@@ -12,7 +12,7 @@
 #include <utility>
 #include <functional>
 #include <unordered_map>
-
+#include <unordered_set>
 
 #include "utility/singleton.h"
 
@@ -33,7 +33,6 @@ public:
     };
     static const char* ToString(LogLevel::Level level);
 };
-
 
 class LogFormatter {
 public:
@@ -68,11 +67,10 @@ public:
     
     virtual void log(std::shared_ptr<LogEvent> event) = 0;
 
+    virtual std::string getFileName() = 0;
 protected:
     LogFormatter::ptr m_formatter;
-
 };
-
 
 class StdoutLogAppender : public LogAppender {
 public:
@@ -81,22 +79,44 @@ public:
     ~StdoutLogAppender() override;
 
     void log(std::shared_ptr<LogEvent> event) override;
+
+    std::string getFileName()  { return m_fileName; }
+
+private:
+
+    const std::string m_fileName = "stdout";
+
 };
 
-// class FileLogAppender : public LogAppender {
-// public:
-//     typedef std::shared_ptr<FileLogAppender> ptr;
-//     virtual void log(std::shared_ptr<LogEvent> event) override;
+class FileLogAppender : public LogAppender {
+public:
+    typedef std::shared_ptr<FileLogAppender> ptr;
 
-// };
+    explicit FileLogAppender(const std::string& file):m_fileName(file) {}
 
+    virtual void log(std::shared_ptr<LogEvent> event) override;
+
+    std::string getFileName()  { return m_fileName; }
+private:
+    std::string m_fileName;
+
+};
 
 class LogEvent {
 public:
     friend LogAppender;
     friend Logger;  
     typedef std::shared_ptr<LogEvent> ptr;
-    LogEvent();
+    LogEvent() {}
+    LogEvent(std::string name,
+                uint64_t time,
+                uint32_t elapse,
+                uint32_t line,
+                uint32_t threadId,
+                uint32_t fiberId,
+                std::string threadName,
+                std::string ss,
+                LogLevel::Level level);
 
     std::string getName() const;
     int32_t getLine() const;
@@ -107,30 +127,26 @@ public:
     const std::string& getThreadName() const;
     std::string getContent() const;
     LogLevel::Level getLevel() const; 
-    std::stringstream& getSS() ;
+    std::stringstream& getSS();
+    std::unordered_set<std::string> getOutFile();
 
     void format(const char* fmt, ...);
     void format(const char* fmt, va_list al);
-    
-    void registAppender(const char* file);
-    void delAppender(const char* file);
-    void clearAppender();
+    bool isUpdate();
+    void update();
 
 private:
-
-    void log(LogEvent::ptr event);
-    std::string m_name;
-    uint64_t m_time;
+    bool m_update;
+    std::string m_name = "root_event";
+    uint64_t m_time = 0;
     uint32_t m_elapse = 0;
     uint32_t m_line = 0;
     uint32_t m_threadId = 0;
     uint32_t m_fiberId = 0;
-    std::string m_threadName;
+    std::string m_threadName = "thread_name";
     std::stringstream m_ss;
-    
-    
-    LogLevel::Level m_level;
-    std::unordered_map<std::string,LogAppender::ptr> m_appenders;
+    LogLevel::Level m_level = LogLevel::INFO;
+    std::unordered_set<std::string> m_outFiles = {"stdout"};
 };
 
 class Logger  {
@@ -142,12 +158,11 @@ public:
     void clearEvent();
     std::string getLevel();
     void setLevel(LogLevel::Level level);
-private:
     void log();
-    
+private:    
     std::string m_name;
     LogLevel::Level m_level;
-    std::unordered_map<std::string,LogEvent::ptr> m_events;
+    std::unordered_map<LogAppender::ptr, std::unordered_set<LogEvent::ptr>> m_appenders;
     Logger::ptr m_root;
 };
 

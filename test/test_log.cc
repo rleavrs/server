@@ -4,14 +4,15 @@
 #include <algorithm>
 #include <string>
 
-//using namespace rleavrs;
+using namespace rleavrs;
 using namespace std;
 
 int main() {
-    // LogLevel::Level l = LogLevel::DEBUG;
-    // cout << LogLevel::ToString(l) << endl;
 
-    std::unordered_map<std::string,std::string> a;
+    std::string x = "123";
+    LogEvent::ptr e = std::make_shared<LogEvent>();
     
-    
+    Logger L;
+    L.registEvent(e);
+    L.log();
 }
