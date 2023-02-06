@@ -4,15 +4,22 @@
 #include <algorithm>
 #include <string>
 
+
 using namespace rleavrs;
 using namespace std;
 
+// template<typename T, typename... Args>
+// ostream& print(ostream& os, const T& t) {
+// 	return os << t << endl;
+// }
+
+// template<typename T,typename... Args>
+// ostream& print(ostream& os, const T& t, const Args&... rest) {
+// 	os << t << ", ";
+// 	return print(os, rest...);
+// }
+
 int main() {
 
-    std::string x = "123";
-    LogEvent::ptr e = std::make_shared<LogEvent>();
-    
-    Logger L;
-    L.registEvent(e);
-    L.log();
+	
 }

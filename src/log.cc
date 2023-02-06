@@ -16,7 +16,7 @@ const char* LogLevel::ToString(LogLevel::Level level) {
 #undef xx
     default:    return "UNKNOW LEVEL";
     }
-} 
+}
 
 void LogFormatter::format(std::ostream& ofs, std::shared_ptr<LogEvent> event) {
     // for(auto i : m_items) {
@@ -138,6 +138,10 @@ public:
 private:
     std::string m_string;
 };
+
+void LogFormatter::init() {
+
+}
 
 
 LogAppender::~LogAppender() {}

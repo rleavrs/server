@@ -13,12 +13,31 @@
 #include <functional>
 #include <unordered_map>
 #include <unordered_set>
+#include <ostream>
 
 #include "utility/singleton.h"
 #include "mutex.h"
 
-
 namespace rleavrs {
+
+template<typename T, typename... Args>
+std::ostream& log(std::ostream& os, const T& t) {
+	return os << t << endl;
+}
+
+template<typename T,typename... Args>
+std::ostream& log(std::ostream& os, const T& t, const Args&... rest) {
+	os << t << " ";
+	return log(os, rest...);
+}
+
+
+
+
+
+
+
+
 class LogEvent;
 class LogAppender;
 class Logger;
@@ -38,7 +57,6 @@ public:
 class LogFormatter {
 public:
     friend LogAppender;
-
 
     typedef std::shared_ptr<LogFormatter> ptr;    
 
