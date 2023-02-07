@@ -22,9 +22,7 @@ void Fiber::reset() {
 
 }
 void Fiber::swapIn() {
-
     
-
 }
 void Fiber::swapOut() {
 
@@ -79,7 +77,7 @@ void Fiber::CallerMainFunc() {
     
     cur->m_cb();
     cur->m_cb = nullptr;
-    cur->m_stack = TERM;
+    // cur->m_stack = TERM;
 
     auto raw_ptr = cur.get();
     cur.reset();

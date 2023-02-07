@@ -8,18 +8,16 @@
 using namespace rleavrs;
 using namespace std;
 
-// template<typename T, typename... Args>
-// ostream& print(ostream& os, const T& t) {
-// 	return os << t << endl;
-// }
+static Logger::ptr g_logger = LOG_ROOT();
+static Logger::ptr r_logger = LOG_NAME("123");
 
-// template<typename T,typename... Args>
-// ostream& print(ostream& os, const T& t, const Args&... rest) {
-// 	os << t << ", ";
-// 	return print(os, rest...);
-// }
+enum A {
+    a = 0,
+    b = 1,
+    c = 2
+};
 
 int main() {
-
-	
+    LOG_DEBUG(g_logger) << "123123" << endl;
+    LOG_ERROR(r_logger) << "debug" << endl;
 }
