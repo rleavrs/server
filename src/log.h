@@ -17,27 +17,25 @@
 #include <map>
 #include <syscall.h>
 #include "singleton.h"
-#include "mutex.h"
-#include "fiber.h"
 #include "thread.h"
+#include "utility.h"
 
-
-#define LOG(level, logger) \
+#define RLEAVRS_LOG(level, logger) \
     if(level > logger->getLevel()) \ 
         rleavrs::LogEventWrap(rleavrs::LogEvent::ptr(new rleavrs::LogEvent(     \
             logger, level, __FILE__, __LINE__, 0,   \
-            syscall(SYS_gettid), rleavrs::Fiber::GetFiberId(),  \
-            time(0), rleavrs::Thread::GetName()))).getSS() << "debug" << "wocao"
+            rleavrs::GetThreadId(), rleavrs::Fiber::GetFiberId(),  \
+            time(0), rleavrs::Thread::GetName()))).getSS()
 
-#define LOG_INFO(logger)    LOG(rleavrs::LogLevel::Level::INFO,logger)
-#define LOG_DEBUG(logger)    LOG(rleavrs::LogLevel::Level::DEBUG,logger)
-#define LOG_WARN(logger)    LOG(rleavrs::LogLevel::Level::WARNNING,logger)
-#define LOG_ERROR(logger)    LOG(rleavrs::LogLevel::Level::ERROR,logger)
-#define LOG_FATAL(logger)    LOG(rleavrs::LogLevel::Level::FATAL,logger)
+#define RLEAVRS_LOG_INFO(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::INFO,logger)
+#define RLEAVRS_LOG_DEBUG(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::DEBUG,logger)
+#define RLEAVRS_LOG_WARN(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::WARNNING,logger)
+#define RLEAVRS_LOG_ERROR(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::ERROR,logger)
+#define RLEAVRS_LOG_FATAL(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::FATAL,logger)
 
 
-#define LOG_ROOT()  rleavrs::LoggerMgr::GetInstance()->getRoot()
-#define LOG_NAME(name)  rleavrs::LoggerMgr::GetInstance()->getLogger(name)
+#define RLEAVRS_LOG_ROOT()  rleavrs::LoggerMgr::GetInstance()->getRoot()
+#define RLEAVRS_LOG_NAME(name)  rleavrs::LoggerMgr::GetInstance()->getLogger(name)
 
 namespace rleavrs {
 
@@ -187,7 +185,6 @@ public:
     void init();
     Logger::ptr getRoot() { return m_root;}
     Logger::ptr getLogger(const std::string &name);
-
 
 private:
     Logger::ptr m_root;

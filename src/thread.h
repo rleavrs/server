@@ -18,6 +18,7 @@ public:
     pid_t getId() const;
     const std::string& getName() const;
     void join();
+    
     static Thread* GetThis();
     static std::string GetName();
     static void SetName(const std::string& name);

@@ -147,15 +147,48 @@ private:
 
 };
 
-class SpinLock {
+
+class RWMutex  {
 public:
-    typedef ScopeLoackImpl<SpinLock> Lock;
+    typedef ReadScopeLockImpl<RWMutex> ReadLock;
+    typedef WriteScopeLockImpl<RWMutex> WriteLock;
     
-    SpinLock() {
+    RWMutex() {
+        pthread_rwlock_init(&m_lock, nullptr);
+    }
+
+    ~RWMutex() {
+        pthread_rwlock_destroy(&m_lock);
+    }
+
+    void rdlock() {
+        pthread_rwlock_rdlock(&m_lock);
+    }   
+
+    void wrlock() {
+        pthread_rwlock_wrlock(&m_lock);
+    }
+    
+    void unlock() {
+        pthread_rwlock_unlock(&m_lock);
+    }
+
+private:
+    pthread_rwlock_t m_lock;
+
+};
+
+
+
+class Spinlock {
+public:
+    typedef ScopeLoackImpl<Spinlock> Lock;
+    
+    Spinlock() {
         pthread_spin_init(&m_mutex,0);
     }
     
-    ~SpinLock() {
+    ~Spinlock() {
         pthread_spin_destroy(&m_mutex);
     }
     

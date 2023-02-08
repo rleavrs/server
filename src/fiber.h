@@ -30,7 +30,7 @@ private:
 public:
     Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
     ~Fiber();
-    void reset();
+    void reset(std::function<void()> cb);
     void swapIn();
     void swapOut();
     void call();
