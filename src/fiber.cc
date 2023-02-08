@@ -13,7 +13,6 @@ static std::atomic<uint64_t> s_fiber_count {0};
 static thread_local Fiber* t_fiber = nullptr;
 static thread_local Fiber::ptr t_threadFiber = nullptr;
 
-
 class MallocStackAllocator {
 public:
     static void* Alloc(size_t size) {
@@ -36,7 +35,6 @@ Fiber::Fiber() {
     ++s_fiber_count;
     RLEAVRS_LOG_DEBUG(g_logger) << "Fiber::Fiber main";
 }
-
 
 Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
     :m_id(++s_fiber_id),
@@ -66,7 +64,7 @@ Fiber::~Fiber() {
         RLEAVRS_ASSERT( m_state == TERM ||
                         m_state == INIT ||
                         m_state == EXCEPT);
-        MallocStackAllocator::Dealloc(m_stack);
+        MallocStackAllocator::Dealloc(m_stack,m_stacksize);
     } else {
         RLEAVRS_ASSERT(!m_cb);
         RLEAVRS_ASSERT(m_state == EXEC);
@@ -102,8 +100,9 @@ void Fiber::fiberSwapIn() {
     
 }
 void Fiber::fiberSwapOut() {
-
+    
 }
+
 void Fiber::threadCall() {
     SetThis(this);
     m_state = EXEC;
@@ -111,6 +110,7 @@ void Fiber::threadCall() {
         RLEAVRS_ASSERT_W(false, "swapcontext");
     }
 }
+
 void Fiber::threadBack() {
     SetThis(t_threadFiber.get());
     if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
@@ -184,7 +184,6 @@ void Fiber::CallerMainFunc() {
     auto raw_ptr = cur.get();
     cur.reset();
     raw_ptr->threadBack();
-
 }
 
 
