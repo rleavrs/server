@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/test_utility.dir/src/mutex.cc.o.d"
   "CMakeFiles/test_utility.dir/src/thread.cc.o"
   "CMakeFiles/test_utility.dir/src/thread.cc.o.d"
+  "CMakeFiles/test_utility.dir/src/timer.cc.o"
+  "CMakeFiles/test_utility.dir/src/timer.cc.o.d"
   "CMakeFiles/test_utility.dir/src/utility.cc.o"
   "CMakeFiles/test_utility.dir/src/utility.cc.o.d"
   "CMakeFiles/test_utility.dir/test/test_utility.cc.o"

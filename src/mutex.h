@@ -93,7 +93,7 @@ class  WriteScopeLockImpl {
 public:
     WriteScopeLockImpl(T& mutex):
         m_mutex(mutex) {
-            m_mutex.wlock();
+            m_mutex.wrlock();
             m_locked = true;
         }
 
@@ -104,7 +104,7 @@ public:
 
     void lock() {
         if(!m_locked) {
-            m_mutex.wlock();
+            m_mutex.wrlock();
             m_locked = true;
         }
     }

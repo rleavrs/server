@@ -14,19 +14,14 @@ class Scheduler {
 public:
     typedef std::shared_ptr<Scheduler> ptr;
     typedef Mutex MutexType;
-
     Scheduler();
     virtual ~Scheduler() = 0;
-
     const std::string& getName() const;
-    
-
-
 private:
     class FiberAndThread {
-        
-    };
+//    public:
 
+    };
 
 private:
     MutexType m_mutex;
@@ -44,9 +39,6 @@ private:
     bool m_stopping = true;
     bool m_autoStop = false;
     int m_rootThread = 0;
-
-
-
 
 };
 

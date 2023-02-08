@@ -200,8 +200,8 @@ CMakeFiles/test_utility.dir/src/log.cc.o: /home/rleavrs/serve/src/log.cc \
  /home/rleavrs/serve/src/mutex.h /usr/include/semaphore.h \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
  /usr/include/c++/11/atomic /home/rleavrs/serve/src/utility.h \
- /usr/include/assert.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/assert.h /usr/include/x86_64-linux-gnu/sys/time.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \

@@ -49,15 +49,12 @@ public:
                                     std::weak_ptr<void> wead_cond,
                                     bool recurring = false);
     uint64_t getNextTime();
-    
     void listExpiredCb(std::vector<std::function<void()>> &cbs);
-    
     bool hasTimer();
     
 protected:
     
     virtual void onTimerInsertedAteFront() = 0;
-    
     void addTimer(Timer::ptr val, RWMutexType::WriteLock& Lock);
 
 private:
@@ -69,6 +66,10 @@ private:
     bool m_tickled = false;
     uint64_t m_previouseTime = 0;
 };
+
+
+
+
 
 }
 #endif

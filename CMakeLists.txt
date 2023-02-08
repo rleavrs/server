@@ -11,7 +11,9 @@ set(SRC_FILE
     src/mutex.cc
     src/mutex.cc
     src/thread.cc
+    src/timer.cc
     src/utility.cc
+    
 )
 # add_library(rleavrs SHARED ${SRC_FILE})
 

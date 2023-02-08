@@ -250,6 +250,33 @@ src/thread.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/thread.cc.s
 .PHONY : src/thread.cc.s
 
+src/timer.o: src/timer.cc.o
+.PHONY : src/timer.o
+
+# target to build an object file
+src/timer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/timer.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/timer.cc.o
+.PHONY : src/timer.cc.o
+
+src/timer.i: src/timer.cc.i
+.PHONY : src/timer.i
+
+# target to preprocess a source file
+src/timer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/timer.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/timer.cc.i
+.PHONY : src/timer.cc.i
+
+src/timer.s: src/timer.cc.s
+.PHONY : src/timer.s
+
+# target to generate assembly for a file
+src/timer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/timer.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/timer.cc.s
+.PHONY : src/timer.cc.s
+
 src/utility.o: src/utility.cc.o
 .PHONY : src/utility.o
 
@@ -347,6 +374,9 @@ help:
 	@echo "... src/thread.o"
 	@echo "... src/thread.i"
 	@echo "... src/thread.s"
+	@echo "... src/timer.o"
+	@echo "... src/timer.i"
+	@echo "... src/timer.s"
 	@echo "... src/utility.o"
 	@echo "... src/utility.i"
 	@echo "... src/utility.s"
