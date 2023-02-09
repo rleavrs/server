@@ -40,7 +40,7 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
     :m_id(++s_fiber_id),
     m_cb(cb) {
     ++s_fiber_count;
-    m_stacksize = stacksize ? stacksize : 128 * 1024; // cooperating with config system, but now use default value(128 * 1024 = 128M)
+    m_stacksize = stacksize ? stacksize : 128 * 1024; // cooperating with config system, but now use default value(128 * 1024K = 128M)
     m_stack = MallocStackAllocator::Alloc(m_stacksize);
     
     if(getcontext(&m_ctx)) {
@@ -94,13 +94,19 @@ void Fiber::reset(std::function<void()> cb) {
 }
 
 void Fiber::fiberSwapIn() {
-    // SetThis(this);
-    // RLEAVRS_ASSERT(m_state != EXEC);
-    // m_state = EXEC;
-    
+    SetThis(this);
+    RLEAVRS_ASSERT(m_state != EXEC);
+    m_state = EXEC;
+    if(swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
+        RLEAVRS_ASSERT_W(false, "swapcontext");
+    }
 }
+
 void Fiber::fiberSwapOut() {
-    
+    SetThis(Scheduler::GetMainFiber());
+    if(swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
+        RLEAVRS_ASSERT_W(false, "swapcontext");
+    }
 }
 
 void Fiber::threadCall() {
@@ -141,7 +147,10 @@ Fiber::ptr Fiber::GetThis() {
 }   
 
 uint64_t Fiber::GetFiberId() {
-    return s_fiber_id;
+    if(t_fiber) {
+        return t_fiber->getId();
+    }
+    return 0;
 }
 
 void Fiber::YieldToReady() {
@@ -164,10 +173,16 @@ uint64_t Fiber::TotalFibers() {
 
 void Fiber::MainFunc() {
     Fiber::ptr cur = GetThis();
-    
-    cur->m_cb();
-    cur->m_cb = nullptr;
-    cur->m_state = TERM;
+    try{
+        cur->m_cb();
+        cur->m_cb = nullptr;
+        cur->m_state = TERM;    
+    } catch(std::exception& e) {
+        cur->m_state = EXCEPT;
+
+    } catch(...) {
+        cur->m_state = EXCEPT;   
+    }
     
     auto raw_ptr = cur.get();
     cur.reset();
@@ -176,10 +191,15 @@ void Fiber::MainFunc() {
 
 void Fiber::CallerMainFunc() {
     Fiber::ptr cur = GetThis();
-    
-    cur->m_cb();
-    cur->m_cb = nullptr;
-    cur-> m_state = TERM;
+    try{
+        cur->m_cb();
+        cur->m_cb = nullptr;
+        cur-> m_state = TERM;
+    } catch(std::exception &e) {
+        cur->m_state = EXCEPT;
+    } catch(...) {
+        cur->m_state = EXCEPT;
+    }
 
     auto raw_ptr = cur.get();
     cur.reset();

@@ -125,10 +125,24 @@ CMakeFiles/test_utility.dir/src/mutex.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_utility.dir/src/mutex.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rleavrs/serve/src/mutex.cc -o CMakeFiles/test_utility.dir/src/mutex.cc.s
 
+CMakeFiles/test_utility.dir/src/scheduler.cc.o: CMakeFiles/test_utility.dir/flags.make
+CMakeFiles/test_utility.dir/src/scheduler.cc.o: ../src/scheduler.cc
+CMakeFiles/test_utility.dir/src/scheduler.cc.o: CMakeFiles/test_utility.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test_utility.dir/src/scheduler.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_utility.dir/src/scheduler.cc.o -MF CMakeFiles/test_utility.dir/src/scheduler.cc.o.d -o CMakeFiles/test_utility.dir/src/scheduler.cc.o -c /home/rleavrs/serve/src/scheduler.cc
+
+CMakeFiles/test_utility.dir/src/scheduler.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_utility.dir/src/scheduler.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rleavrs/serve/src/scheduler.cc > CMakeFiles/test_utility.dir/src/scheduler.cc.i
+
+CMakeFiles/test_utility.dir/src/scheduler.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_utility.dir/src/scheduler.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rleavrs/serve/src/scheduler.cc -o CMakeFiles/test_utility.dir/src/scheduler.cc.s
+
 CMakeFiles/test_utility.dir/src/thread.cc.o: CMakeFiles/test_utility.dir/flags.make
 CMakeFiles/test_utility.dir/src/thread.cc.o: ../src/thread.cc
 CMakeFiles/test_utility.dir/src/thread.cc.o: CMakeFiles/test_utility.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/test_utility.dir/src/thread.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test_utility.dir/src/thread.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_utility.dir/src/thread.cc.o -MF CMakeFiles/test_utility.dir/src/thread.cc.o.d -o CMakeFiles/test_utility.dir/src/thread.cc.o -c /home/rleavrs/serve/src/thread.cc
 
 CMakeFiles/test_utility.dir/src/thread.cc.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/test_utility.dir/src/thread.cc.s: cmake_force
 CMakeFiles/test_utility.dir/src/timer.cc.o: CMakeFiles/test_utility.dir/flags.make
 CMakeFiles/test_utility.dir/src/timer.cc.o: ../src/timer.cc
 CMakeFiles/test_utility.dir/src/timer.cc.o: CMakeFiles/test_utility.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/test_utility.dir/src/timer.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test_utility.dir/src/timer.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_utility.dir/src/timer.cc.o -MF CMakeFiles/test_utility.dir/src/timer.cc.o.d -o CMakeFiles/test_utility.dir/src/timer.cc.o -c /home/rleavrs/serve/src/timer.cc
 
 CMakeFiles/test_utility.dir/src/timer.cc.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/test_utility.dir/src/timer.cc.s: cmake_force
 CMakeFiles/test_utility.dir/src/utility.cc.o: CMakeFiles/test_utility.dir/flags.make
 CMakeFiles/test_utility.dir/src/utility.cc.o: ../src/utility.cc
 CMakeFiles/test_utility.dir/src/utility.cc.o: CMakeFiles/test_utility.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/test_utility.dir/src/utility.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test_utility.dir/src/utility.cc.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_utility.dir/src/utility.cc.o -MF CMakeFiles/test_utility.dir/src/utility.cc.o.d -o CMakeFiles/test_utility.dir/src/utility.cc.o -c /home/rleavrs/serve/src/utility.cc
 
 CMakeFiles/test_utility.dir/src/utility.cc.i: cmake_force
@@ -173,6 +187,7 @@ test_utility_OBJECTS = \
 "CMakeFiles/test_utility.dir/src/fiber.cc.o" \
 "CMakeFiles/test_utility.dir/src/log.cc.o" \
 "CMakeFiles/test_utility.dir/src/mutex.cc.o" \
+"CMakeFiles/test_utility.dir/src/scheduler.cc.o" \
 "CMakeFiles/test_utility.dir/src/thread.cc.o" \
 "CMakeFiles/test_utility.dir/src/timer.cc.o" \
 "CMakeFiles/test_utility.dir/src/utility.cc.o"
@@ -184,12 +199,13 @@ test_utility_EXTERNAL_OBJECTS =
 ../bin/test_utility: CMakeFiles/test_utility.dir/src/fiber.cc.o
 ../bin/test_utility: CMakeFiles/test_utility.dir/src/log.cc.o
 ../bin/test_utility: CMakeFiles/test_utility.dir/src/mutex.cc.o
+../bin/test_utility: CMakeFiles/test_utility.dir/src/scheduler.cc.o
 ../bin/test_utility: CMakeFiles/test_utility.dir/src/thread.cc.o
 ../bin/test_utility: CMakeFiles/test_utility.dir/src/timer.cc.o
 ../bin/test_utility: CMakeFiles/test_utility.dir/src/utility.cc.o
 ../bin/test_utility: CMakeFiles/test_utility.dir/build.make
 ../bin/test_utility: CMakeFiles/test_utility.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable ../bin/test_utility"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rleavrs/serve/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable ../bin/test_utility"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_utility.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

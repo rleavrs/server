@@ -9,18 +9,19 @@
 
 
 // Fiber 
-// makecontext:初始化一个ucontext_t,func参数指明了该context的入口函数，argc为入口参数的个数，每个参数的类型必须是int类型。另外在makecontext之前，一般需要显示的初始化栈信息以及信号掩码集同时也需要初始化uc_link，以便程序退出上下文后继续执行。
+// makecontext:初始化一个ucontext_t,func参数指明了该context的入口函数，argc为入口参数的个数，每个参数的类型必须是int类型。
+//              另外在makecontext之前，一般需要显示的初始化栈信息以及信号掩码集同时也需要初始化uc_link，以便程序退出上下文后继续执行。
 // swapcontext:原子操作，该函数的工作是保存当前上下文并将上下文切换到新的上下文运行。
 // getcontext:将当前的执行上下文保存在ucp中，以便后续恢复上下文
 // setcontext : 将当前程序切换到新的context,在执行正确的情况下该函数直接切换到新的执行状态，不会返回。
 
 namespace rleavrs {
 
-class Sechduler;
+class Scheduler;
 
 class Fiber : public std::enable_shared_from_this<Fiber>{
 public:
-    friend Sechduler;
+    friend Scheduler;
     typedef std::shared_ptr<Fiber> ptr;
 
     enum State {

@@ -9,11 +9,11 @@ set(SRC_FILE
     src/fiber.cc
     src/log.cc
     src/mutex.cc
-    src/mutex.cc
+    src/scheduler.cc
     src/thread.cc
     src/timer.cc
     src/utility.cc
-    src/fiber.cc
+    
     
 )
 # add_library(rleavrs SHARED ${SRC_FILE})
@@ -27,3 +27,5 @@ find_library(PTHREAD pthread)
 # exe
 add_executable(test_log "test/test_log.cc" ${SRC_FILE})
 add_executable(test_utility "test/test_utility.cc" ${SRC_FILE})
+add_executable(test_main "test/test_main.cc")
+add_executable(test_scheduler "test/test_scheduler.cc" ${SRC_FILE})

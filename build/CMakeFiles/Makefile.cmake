@@ -45,4 +45,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_log.dir/DependInfo.cmake"
   "CMakeFiles/test_utility.dir/DependInfo.cmake"
+  "CMakeFiles/test_main.dir/DependInfo.cmake"
+  "CMakeFiles/test_scheduler.dir/DependInfo.cmake"
   )

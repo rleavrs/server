@@ -23,7 +23,7 @@
 
 #define RLEAVRS_ASSERT(x) \
     if(RLEAVRS_UNLIKELY(!(x))) { \
-        RLEAVRS_LOG_ERROR(RLEAVRS_LOG_ROOT()) << "ASSERTION: "#x \
+        RLEAVRS_LOG_ERROR(RLEAVRS_LOG_ROOT()) << "ASSERTION: " #x \
             << "\nbacktrace:\n"    \ 
             << rleavrs::BacktraceToString(100,2 ,"    "); \
             assert(x); \
@@ -31,7 +31,7 @@
             
 #define RLEAVRS_ASSERT_W(x,w) \
     if(RLEAVRS_UNLIKELY(!(x))) { \
-        RLEAVRS_LOG_ERROR(RLEAVRS_LOG_ROOT()) << "ASSERTION: "#x \
+        RLEAVRS_LOG_ERROR(RLEAVRS_LOG_ROOT()) << "ASSERTION: " #x \
             << "\n" << w \
             << "\nbacktrace:\n" \
             << rleavrs::BacktraceToString(100, 2, "    "); \
@@ -42,7 +42,7 @@ namespace rleavrs {
 
 
 static std::string demangle(const char* str);
-void Backtrace(std::vector<std::string>& bt, int size, int skip);
+void Backtrace(std::vector<std::string>& bt, int size = 64, int skip = 1);
 std::string BacktraceToString(int size, int skip, const std::string& prefix);
 pid_t GetThreadId();
 uint32_t GetFiberId();

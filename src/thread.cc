@@ -1,8 +1,11 @@
 #include "thread.h"
 #include <unistd.h>
 #include <syscall.h>
+#include "log.h"
+
 
 namespace rleavrs {
+static Logger::ptr g_logger = RLEAVRS_LOG_ROOT();
 static thread_local Thread* t_thread = nullptr;
 static thread_local std::string t_thread_name = "UNKNOW";
 
