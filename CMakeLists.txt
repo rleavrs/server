@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(serve)
 
+add_definitions(-w)
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
@@ -29,3 +30,4 @@ add_executable(test_log "test/test_log.cc" ${SRC_FILE})
 add_executable(test_utility "test/test_utility.cc" ${SRC_FILE})
 add_executable(test_main "test/test_main.cc")
 add_executable(test_scheduler "test/test_scheduler.cc" ${SRC_FILE})
+add_executable(test_timers "test/test_timer.cc" ${SRC_FILE})

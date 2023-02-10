@@ -47,4 +47,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_utility.dir/DependInfo.cmake"
   "CMakeFiles/test_main.dir/DependInfo.cmake"
   "CMakeFiles/test_scheduler.dir/DependInfo.cmake"
+  "CMakeFiles/test_timers.dir/DependInfo.cmake"
   )

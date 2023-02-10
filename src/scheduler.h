@@ -18,21 +18,21 @@ public:
     
     Scheduler(size_t threads = 1, bool use_caller = true, const std::string& name = "");
     virtual ~Scheduler();
-    virtual void tickle();
-    virtual void idle();
-
+    
     const std::string& getName() const;
     void start();
-    void stop();
-    void run();
-    bool stopping();
-    void setThis();
-    bool hasIdleThread();
+    void stop();    
 
     static Scheduler* GetThis();
     static Fiber* GetMainFiber();
     
-
+protected:
+    virtual void tickle();
+    virtual void idle();
+    virtual bool stopping();
+    void setThis();
+    bool hasIdleThread();
+    void run();
 
 private:
     class FiberAndThread {
@@ -67,7 +67,7 @@ private:
         FiberAndThread ft(fc, thread);
         if(ft.fiber || ft.cb) {
             m_fibers.push_back(ft);
-            std::cout << "Cur fiber " << m_fibers.size() << std::endl; 
+            //std::cout << "Cur fiber " << m_fibers.size() << std::endl; 
         }
 
         return tickle;

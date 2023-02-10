@@ -168,6 +168,19 @@ test_scheduler/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
 .PHONY : test_scheduler/fast
 
+#=============================================================================
+# Target rules for targets named test_timers
+
+# Build rule for target.
+test_timers: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_timers
+.PHONY : test_timers
+
+# fast build rule for target.
+test_timers/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/build
+.PHONY : test_timers/fast
+
 src/fiber.o: src/fiber.cc.o
 .PHONY : src/fiber.o
 
@@ -176,6 +189,7 @@ src/fiber.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/fiber.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/fiber.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/fiber.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/fiber.cc.o
 .PHONY : src/fiber.cc.o
 
 src/fiber.i: src/fiber.cc.i
@@ -186,6 +200,7 @@ src/fiber.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/fiber.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/fiber.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/fiber.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/fiber.cc.i
 .PHONY : src/fiber.cc.i
 
 src/fiber.s: src/fiber.cc.s
@@ -196,6 +211,7 @@ src/fiber.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/fiber.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/fiber.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/fiber.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/fiber.cc.s
 .PHONY : src/fiber.cc.s
 
 src/log.o: src/log.cc.o
@@ -206,6 +222,7 @@ src/log.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/log.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/log.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/log.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/log.cc.o
 .PHONY : src/log.cc.o
 
 src/log.i: src/log.cc.i
@@ -216,6 +233,7 @@ src/log.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/log.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/log.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/log.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/log.cc.i
 .PHONY : src/log.cc.i
 
 src/log.s: src/log.cc.s
@@ -226,6 +244,7 @@ src/log.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/log.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/log.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/log.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/log.cc.s
 .PHONY : src/log.cc.s
 
 src/mutex.o: src/mutex.cc.o
@@ -236,6 +255,7 @@ src/mutex.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/mutex.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/mutex.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/mutex.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/mutex.cc.o
 .PHONY : src/mutex.cc.o
 
 src/mutex.i: src/mutex.cc.i
@@ -246,6 +266,7 @@ src/mutex.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/mutex.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/mutex.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/mutex.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/mutex.cc.i
 .PHONY : src/mutex.cc.i
 
 src/mutex.s: src/mutex.cc.s
@@ -256,6 +277,7 @@ src/mutex.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/mutex.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/mutex.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/mutex.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/mutex.cc.s
 .PHONY : src/mutex.cc.s
 
 src/scheduler.o: src/scheduler.cc.o
@@ -266,6 +288,7 @@ src/scheduler.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/scheduler.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/scheduler.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/scheduler.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/scheduler.cc.o
 .PHONY : src/scheduler.cc.o
 
 src/scheduler.i: src/scheduler.cc.i
@@ -276,6 +299,7 @@ src/scheduler.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/scheduler.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/scheduler.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/scheduler.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/scheduler.cc.i
 .PHONY : src/scheduler.cc.i
 
 src/scheduler.s: src/scheduler.cc.s
@@ -286,6 +310,7 @@ src/scheduler.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/scheduler.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/scheduler.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/scheduler.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/scheduler.cc.s
 .PHONY : src/scheduler.cc.s
 
 src/thread.o: src/thread.cc.o
@@ -296,6 +321,7 @@ src/thread.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/thread.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/thread.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/thread.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/thread.cc.o
 .PHONY : src/thread.cc.o
 
 src/thread.i: src/thread.cc.i
@@ -306,6 +332,7 @@ src/thread.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/thread.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/thread.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/thread.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/thread.cc.i
 .PHONY : src/thread.cc.i
 
 src/thread.s: src/thread.cc.s
@@ -316,6 +343,7 @@ src/thread.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/thread.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/thread.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/thread.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/thread.cc.s
 .PHONY : src/thread.cc.s
 
 src/timer.o: src/timer.cc.o
@@ -326,6 +354,7 @@ src/timer.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/timer.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/timer.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/timer.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/timer.cc.o
 .PHONY : src/timer.cc.o
 
 src/timer.i: src/timer.cc.i
@@ -336,6 +365,7 @@ src/timer.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/timer.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/timer.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/timer.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/timer.cc.i
 .PHONY : src/timer.cc.i
 
 src/timer.s: src/timer.cc.s
@@ -346,6 +376,7 @@ src/timer.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/timer.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/timer.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/timer.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/timer.cc.s
 .PHONY : src/timer.cc.s
 
 src/utility.o: src/utility.cc.o
@@ -356,6 +387,7 @@ src/utility.cc.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/utility.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/utility.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/utility.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/utility.cc.o
 .PHONY : src/utility.cc.o
 
 src/utility.i: src/utility.cc.i
@@ -366,6 +398,7 @@ src/utility.cc.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/utility.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/utility.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/utility.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/utility.cc.i
 .PHONY : src/utility.cc.i
 
 src/utility.s: src/utility.cc.s
@@ -376,6 +409,7 @@ src/utility.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/src/utility.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_utility.dir/build.make CMakeFiles/test_utility.dir/src/utility.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/src/utility.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/src/utility.cc.s
 .PHONY : src/utility.cc.s
 
 test/test_log.o: test/test_log.cc.o
@@ -450,6 +484,30 @@ test/test_scheduler.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/test/test_scheduler.cc.s
 .PHONY : test/test_scheduler.cc.s
 
+test/test_timer.o: test/test_timer.cc.o
+.PHONY : test/test_timer.o
+
+# target to build an object file
+test/test_timer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/test/test_timer.cc.o
+.PHONY : test/test_timer.cc.o
+
+test/test_timer.i: test/test_timer.cc.i
+.PHONY : test/test_timer.i
+
+# target to preprocess a source file
+test/test_timer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/test/test_timer.cc.i
+.PHONY : test/test_timer.cc.i
+
+test/test_timer.s: test/test_timer.cc.s
+.PHONY : test/test_timer.s
+
+# target to generate assembly for a file
+test/test_timer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_timers.dir/build.make CMakeFiles/test_timers.dir/test/test_timer.cc.s
+.PHONY : test/test_timer.cc.s
+
 test/test_utility.o: test/test_utility.cc.o
 .PHONY : test/test_utility.o
 
@@ -485,6 +543,7 @@ help:
 	@echo "... test_log"
 	@echo "... test_main"
 	@echo "... test_scheduler"
+	@echo "... test_timers"
 	@echo "... test_utility"
 	@echo "... src/fiber.o"
 	@echo "... src/fiber.i"
@@ -516,6 +575,9 @@ help:
 	@echo "... test/test_scheduler.o"
 	@echo "... test/test_scheduler.i"
 	@echo "... test/test_scheduler.s"
+	@echo "... test/test_timer.o"
+	@echo "... test/test_timer.i"
+	@echo "... test/test_timer.s"
 	@echo "... test/test_utility.o"
 	@echo "... test/test_utility.i"
 	@echo "... test/test_utility.s"

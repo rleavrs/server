@@ -53,8 +53,7 @@ public:
     bool hasTimer();
     
 protected:
-    
-    virtual void onTimerInsertedAteFront() = 0;
+    virtual void onTimerInsertedAtFront() = 0;
     void addTimer(Timer::ptr val, RWMutexType::WriteLock& Lock);
 
 private:

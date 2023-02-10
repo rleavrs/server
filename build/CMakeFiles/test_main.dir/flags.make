@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/rleavrs/serve/.
 
-CXX_FLAGS = 
+CXX_FLAGS =   -w
 
