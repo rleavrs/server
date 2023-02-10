@@ -4,6 +4,4 @@ using namespace rleavrs;
 using namespace std;
 
 int main () {
-    Timer t;
-
 }

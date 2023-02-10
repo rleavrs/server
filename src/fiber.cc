@@ -71,7 +71,7 @@ Fiber::~Fiber() {
         Fiber* cur = t_fiber;
         if(cur == this) SetThis(nullptr);
     }
-    RLEAVRS_LOG_DEBUG(g_logger) << "FIber::~Fiber id = " << m_id << " tatal = " << s_fiber_count;  
+    RLEAVRS_LOG_DEBUG(g_logger) << "FIber::~Fiber id = " << m_id << " tatal = " << s_fiber_count << std::endl;  
 }
 
 void Fiber::reset(std::function<void()> cb) {

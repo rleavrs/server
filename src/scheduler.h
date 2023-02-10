@@ -22,10 +22,12 @@ public:
     const std::string& getName() const;
     void start();
     void stop();    
+    void switchTo(int thread = -1);
 
     static Scheduler* GetThis();
     static Fiber* GetMainFiber();
-    
+
+
 protected:
     virtual void tickle();
     virtual void idle();
@@ -33,6 +35,7 @@ protected:
     void setThis();
     bool hasIdleThread();
     void run();
+
 
 private:
     class FiberAndThread {
@@ -52,9 +55,10 @@ private:
         FiberAndThread(): thread(-1){}
 
         void reset () { fiber = nullptr , cb = nullptr, thread = -1;}
-        int thread;
-        Fiber::ptr fiber;
-        std::function<void()> cb;
+        
+        int thread = -1;
+        Fiber::ptr fiber = nullptr;
+        std::function<void()> cb = nullptr;
     };
 
 
@@ -114,6 +118,12 @@ private:
     std::list<FiberAndThread> m_fibers;
     Fiber::ptr m_rootFiber;
     std::string m_name;
+
+};
+
+class SchedulerSwitcher {
+
+
 
 };
 

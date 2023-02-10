@@ -164,7 +164,7 @@ void TimerManager::addTimer(Timer::ptr val, RWMutexType::WriteLock &Lock) {
     bool at_front = (it == m_timers.begin()) && !m_tickled;
     if(at_front) m_tickled = true;
     Lock.unlock();
-    if(m_tickled) onTimerInsertedAteFront();
+    if(m_tickled) onTimerInsertedAtFront();
 }
 
 bool TimerManager::detectClockRollover(uint64_t now_ms) {

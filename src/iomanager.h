@@ -44,7 +44,7 @@ private:
             std::function<void()> cb;
         };
         
-        EventContext& getcontext(EventStatus event);
+        EventContext& getContext(EventStatus event);
         void resetContext(EventContext& ctx);
         void triggerEvent(EventStatus event);
         
@@ -62,6 +62,8 @@ private:
     RWMutexType m_mutex;
     std::vector<FdContext*> m_fdContexts;
 };
+
+  
     
 }
 

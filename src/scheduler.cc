@@ -31,10 +31,10 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name)
 }
 
 Scheduler::~Scheduler() {
-    // RLEAVRS_ASSERT(m_stopping);
-    // if(GetThis() == this) {
-    //     t_scheduler = nullptr;
-    // }
+    RLEAVRS_ASSERT(m_stopping);
+    if(GetThis() == this) {
+        t_scheduler = nullptr;
+    }
 }
 
 void Scheduler::tickle() {
@@ -67,10 +67,10 @@ void Scheduler::start() {
 
 void Scheduler::stop() {
     m_autoStop = true;
-    if(m_rootFiber)
-    if(m_threadCounts == 0
-            && (m_rootFiber->getState() == Fiber::TERM)
-                ||  m_rootFiber->getState() == Fiber::INIT){
+    if(m_rootFiber
+            &&m_threadCounts == 0
+            && ((m_rootFiber->getState() == Fiber::TERM)
+                ||  m_rootFiber->getState() == Fiber::INIT)){
         RLEAVRS_LOG_INFO(g_logger) << this << " stopped";
         m_stopping = true;
         if(stopping())  return;
@@ -99,7 +99,7 @@ void Scheduler::stop() {
     for(auto& i : thrs) 
     {
         i->join();
-    }  // wait for the end of all thraeds
+    }  // wait for the end of all threads
 }
 
 void Scheduler::run() {
@@ -113,8 +113,7 @@ void Scheduler::run() {
     FiberAndThread ft;
 
     while(true) {
-        
-        
+        // RLEAVRS_LOG_DEBUG(g_logger) << "activate thread" << m_activateThreadCount << std::endl;
         ft.reset();
         bool tickle_me = false;
         bool is_activate = false;
@@ -157,16 +156,26 @@ void Scheduler::run() {
                 ft.fiber->m_state = Fiber::HOLD;
             }
             ft.reset();
-
             } else if(ft.cb) {
-            if(cb_fiber) {
-                cb_fiber->reset(ft.cb);
-            } else {
-                cb_fiber.reset(new Fiber(ft.cb));
-            }
-            ft.reset();
-            cb_fiber->fiberSwapIn();
-            
+                if(cb_fiber) {
+                    cb_fiber->reset(ft.cb);
+                } else {
+                    cb_fiber.reset(new Fiber(ft.cb));
+                }
+                ft.reset();
+                cb_fiber->fiberSwapIn();
+                --m_activateThreadCount;
+
+                if(cb_fiber->getState() == Fiber::READY) {
+                    schedule(cb_fiber);
+                    cb_fiber.reset();
+                }  else if(cb_fiber->getState() == Fiber::EXCEPT
+                            ||  cb_fiber->getState() == Fiber::TERM) {
+                    cb_fiber->reset(nullptr);
+                } else {
+                    cb_fiber->m_state = Fiber::HOLD;
+                    cb_fiber.reset();
+                }
 
             } else {
             if(is_activate) {
@@ -211,6 +220,17 @@ Scheduler* Scheduler::GetThis() {
 
 Fiber* Scheduler::GetMainFiber() {
     return t_scheduler_fiber;
+}
+
+void Scheduler::switchTo(int thread) {
+    if(Scheduler::GetThis() == this) {
+        if(thread == -1 || thread == GetThreadId()) {
+            return;
+        }    
+    }
+
+    schedule(Fiber::GetThis(), thread);
+    Fiber::YieldToHold();
 }
 
 
