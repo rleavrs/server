@@ -42,7 +42,7 @@ void Scheduler::tickle() {
 }
 
 void Scheduler::idle() {
-    RLEAVRS_LOG_INFO(g_logger) << "this is Thread "<< GetThreadId() <<" idle func";
+    RLEAVRS_LOG_DEBUG(g_logger) << "this is Thread "<< GetThreadId() <<" idle func" << std::endl;
     while(!stopping()) {
         Fiber::YieldToHold();
     }
@@ -68,7 +68,7 @@ void Scheduler::start() {
 void Scheduler::stop() {
     m_autoStop = true;
     if(m_rootFiber
-            &&m_threadCounts == 0
+            && m_threadCounts == 0
             && ((m_rootFiber->getState() == Fiber::TERM)
                 ||  m_rootFiber->getState() == Fiber::INIT)){
         RLEAVRS_LOG_INFO(g_logger) << this << " stopped";

@@ -48,9 +48,9 @@ private:
         void resetContext(EventContext& ctx);
         void triggerEvent(EventStatus event);
         
+        int fd = 0;
         EventContext read;
         EventContext write;
-        int fd = 0;
         EventStatus events = NONE;
         MutexType mutex;
     };
@@ -63,8 +63,10 @@ private:
     std::vector<FdContext*> m_fdContexts;
 };
 
-  
-    
+
+
+
+
 }
 
 

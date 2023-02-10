@@ -8,7 +8,7 @@ static rleavrs::Logger::ptr g_logger = RLEAVRS_LOG_ROOT();
 
 
 static int s_count =100000;
-static int k = 10000000;
+static int k = 100000;
 void test_fiber() {
     k--;
     RLEAVRS_LOG_DEBUG(g_logger) << " " << GetThreadId() <<  " test in fiber s_count=" << k << endl;
@@ -18,10 +18,11 @@ int main(int argc, char** argv) {
     RLEAVRS_LOG_DEBUG(g_logger) << "main" << endl;
     rleavrs::Scheduler sc(6, false, "test");
     RLEAVRS_LOG_DEBUG(g_logger) << "schedule" << endl;
+    sc.start();
+
     while(s_count--){
         sc.schedule(&test_fiber);
     }
-    sc.start();
 
     RLEAVRS_LOG_DEBUG(g_logger) << "schedule OK" << endl;
     
