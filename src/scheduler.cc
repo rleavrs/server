@@ -42,7 +42,7 @@ void Scheduler::tickle() {
 }
 
 void Scheduler::idle() {
-    RLEAVRS_LOG_DEBUG(g_logger) << "this is Thread "<< GetThreadId() <<" idle func" << std::endl;
+    RLEAVRS_LOG_DEBUG(g_logger) << "this is Thread "<< GetThreadId() <<" idle func";
     while(!stopping()) {
         Fiber::YieldToHold();
     }
@@ -102,8 +102,8 @@ void Scheduler::stop() {
     }  // wait for the end of all threads
 }
 
+
 void Scheduler::run() {
-    RLEAVRS_LOG_DEBUG(g_logger) << "The Thread " << GetThreadId() << " scheduler is running" << std::endl;
     setThis();
     if(GetThreadId() != m_rootThread) {
         t_scheduler_fiber = Fiber::GetThis().get();
@@ -187,11 +187,11 @@ void Scheduler::run() {
                 break;
             }
 
-            idle_fiber->fiberSwapIn();
-            if(idle_fiber->getState() != Fiber::TERM
-                    && idle_fiber->getState() != Fiber::EXCEPT) {
-                idle_fiber->m_state = Fiber::HOLD;
-            }
+            // idle_fiber->fiberSwapIn();
+            // if(idle_fiber->getState() != Fiber::TERM
+            //         && idle_fiber->getState() != Fiber::EXCEPT) {
+            //     idle_fiber->m_state = Fiber::HOLD;
+            //}
 
         }
     }

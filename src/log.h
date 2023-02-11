@@ -25,7 +25,7 @@
         rleavrs::LogEventWrap(rleavrs::LogEvent::ptr(new rleavrs::LogEvent(     \
             logger, level, __FILE__, __LINE__, 0,   \
             rleavrs::GetThreadId(), rleavrs::Fiber::GetFiberId(),  \
-            time(0), rleavrs::Thread::GetName()))).getSS()
+            rleavrs::GetCurrentMS(), rleavrs::Thread::GetName()))).getSS()
 
 #define RLEAVRS_LOG_INFO(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::INFO,logger)
 #define RLEAVRS_LOG_DEBUG(logger)    RLEAVRS_LOG(rleavrs::LogLevel::Level::DEBUG,logger)
@@ -134,13 +134,16 @@ public:
 private:
     std::vector<FormatItem::ptr> m_items;
     std::string m_pattern;
+    bool m_error = false;
 };
 
 class LogAppender {
 public:
-   typedef std::shared_ptr<LogAppender> ptr;
-   
-   virtual void log(LogLevel::Level level, LogEvent::ptr event) = 0;
+    typedef std::shared_ptr<LogAppender> ptr;
+    typedef Mutex MutexType;   
+    virtual void log(LogLevel::Level level, LogEvent::ptr event) = 0;
+protected:
+    MutexType m_mutex;
 };
 
 class StdoutAppender : public LogAppender { 
@@ -154,6 +157,8 @@ class Logger : public std::enable_shared_from_this<Logger> {
 public:
     friend LoggerManage;
     typedef std::shared_ptr<Logger> ptr;
+    typedef Mutex MutexType;
+
     Logger(std::string name = "root");
     std::string getName();
     LogLevel::Level getLevel();
@@ -177,10 +182,12 @@ private:
     LogFormatter::ptr m_formatter;
     std::unordered_set<LogAppender::ptr> m_appenders;
     Logger::ptr m_root;
+    MutexType m_mutex;
 };
 
 class LoggerManage {
 public:
+    typedef Mutex MutexType;
     LoggerManage();
     void init();
     Logger::ptr getRoot() { return m_root;}
@@ -189,6 +196,7 @@ public:
 private:
     Logger::ptr m_root;
     std::map<std::string, Logger::ptr> m_logger;
+    MutexType m_mutex;
 };
 
 typedef rleavrs::Singleton<LoggerManage> LoggerMgr;

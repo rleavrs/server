@@ -71,7 +71,6 @@ private:
         FiberAndThread ft(fc, thread);
         if(ft.fiber || ft.cb) {
             m_fibers.push_back(ft);
-            //std::cout << "Cur fiber " << m_fibers.size() << std::endl; 
         }
 
         return tickle;
