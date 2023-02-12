@@ -17,6 +17,7 @@ set(SRC_FILE
     src/mutex.cc
     src/scheduler.cc
     src/socket.cc
+    src/tcp_server.cc
     src/thread.cc
     src/timer.cc
     src/utility.cc

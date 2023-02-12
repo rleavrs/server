@@ -8,14 +8,14 @@
 using namespace rleavrs;
 using namespace std;
 
-static Logger::ptr g_logger = RLEAVRS_LOG_ROOT();
-static Logger::ptr r_logger = RLEAVRS_LOG_NAME("123");
-
+static Logger::ptr g_logger = RLEAVRS_LOG_NAME("system");
 int main() {
     // LogFormatter* x = new LogFormatter("mprctndflTFN");
     while(1){
-        RLEAVRS_LOG_DEBUG(g_logger) << "123123" ;
-        RLEAVRS_LOG_ERROR(r_logger) << "debug";
+        RLEAVRS_LOG_INFO(g_logger) << "INFO" ;
+        RLEAVRS_LOG_DEBUG(g_logger) << "DEBUG" ;
+        RLEAVRS_LOG_ERROR(g_logger) << "ERROR" ;
+        RLEAVRS_LOG_FATAL(g_logger) << "FATAL" ;
         sleep(0.1);
     }
 

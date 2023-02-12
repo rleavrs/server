@@ -21,7 +21,7 @@
 #include "utility.h"
 
 #define RLEAVRS_LOG(level, logger) \
-    if(level > logger->getLevel()) \ 
+    if(level >= logger->getLevel()) \ 
         rleavrs::LogEventWrap(rleavrs::LogEvent::ptr(new rleavrs::LogEvent(     \
             logger, level, __FILE__, __LINE__, 0,   \
             rleavrs::GetThreadId(), rleavrs::Fiber::GetFiberId(),  \
@@ -58,6 +58,7 @@ public:
 
 class LogEvent {
 public:
+    friend Logger;
     typedef std::shared_ptr<LogEvent> ptr;
     explicit LogEvent(std::shared_ptr<Logger> logger,LogLevel::Level level,
                         const char* file,
