@@ -1,5 +1,5 @@
 #include "scheduler.h"
-
+#include "hook.h"
 
 namespace rleavrs {
 
@@ -104,6 +104,7 @@ void Scheduler::stop() {
 
 
 void Scheduler::run() {
+    set_hook_enable(true);
     setThis();
     if(GetThreadId() != m_rootThread) {
         t_scheduler_fiber = Fiber::GetThis().get();

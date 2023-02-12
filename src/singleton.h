@@ -1,3 +1,7 @@
+#ifndef __RLEAVRS_SINGLETON_H_
+#define __RLEAVRS_SINGLETON_H_
+
+
 #include <memory>
 namespace rleavrs {
 
@@ -20,4 +24,8 @@ public:
     }  
 };
 
+
 }
+
+
+#endif

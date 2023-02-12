@@ -14,7 +14,7 @@ public:
         WRITE = 0x4,
     };
 
-protected:
+public:
     IOManager(size_t threads = 1, bool user_caller = true, const std::string& name = "");
     ~IOManager();
     

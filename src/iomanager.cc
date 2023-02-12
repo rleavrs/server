@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <sys/epoll.h>
 #include <string.h>
+#include "hook.h"
 
 namespace rleavrs {
 
