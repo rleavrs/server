@@ -12,6 +12,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name)
     :m_name(name) {
     RLEAVRS_ASSERT(threads > 0);
     if(use_caller){
+        Fiber::GetThis();
         RLEAVRS_ASSERT(GetThis() == nullptr);
         threads--;
         t_scheduler = this;
@@ -31,7 +32,7 @@ Scheduler::Scheduler(size_t threads, bool use_caller, const std::string& name)
 }
 
 Scheduler::~Scheduler() {
-    RLEAVRS_ASSERT(m_stopping);
+    RLEAVRS_ASSERT(!m_stopping);
     if(GetThis() == this) {
         t_scheduler = nullptr;
     }
@@ -42,7 +43,6 @@ void Scheduler::tickle() {
 }
 
 void Scheduler::idle() {
-    RLEAVRS_LOG_DEBUG(g_logger) << "this is Thread "<< GetThreadId() <<" idle func";
     while(!stopping()) {
         Fiber::YieldToHold();
     }
@@ -83,19 +83,16 @@ void Scheduler::stop() {
     }
     
     m_stopping = true;
-    
     if(m_rootFiber) {
         if(!stopping()) {
             m_rootFiber->threadCall();
         }
     }
-
     std::vector<Thread::ptr> thrs;
     {
         MutexType::Lock lock(m_mutex);
         thrs.swap(m_threads);
     }
-
     for(auto& i : thrs) 
     {
         i->join();

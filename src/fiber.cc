@@ -33,7 +33,6 @@ Fiber::Fiber() {
     }
     
     ++s_fiber_count;
-    RLEAVRS_LOG_DEBUG(g_logger) << "Fiber::Fiber main";
 }
 
 Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller)
@@ -112,6 +111,7 @@ void Fiber::fiberSwapOut() {
 void Fiber::threadCall() {
     SetThis(this);
     m_state = EXEC;
+    RLEAVRS_ASSERT(t_threadFiber);
     if(swapcontext(&t_threadFiber->m_ctx,&m_ctx)) {
         RLEAVRS_ASSERT_W(false, "swapcontext");
     }
@@ -119,6 +119,7 @@ void Fiber::threadCall() {
 
 void Fiber::threadBack() {
     SetThis(t_threadFiber.get());
+    RLEAVRS_ASSERT(t_threadFiber);
     if(swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
         RLEAVRS_ASSERT_W(false, "swapcontext");
     }
@@ -143,6 +144,7 @@ Fiber::ptr Fiber::GetThis() {
     Fiber::ptr main_fiber(new Fiber);
     RLEAVRS_ASSERT(t_fiber == main_fiber.get());
     t_threadFiber = main_fiber;
+    RLEAVRS_ASSERT(t_threadFiber);
     return t_fiber->shared_from_this();
 }   
 

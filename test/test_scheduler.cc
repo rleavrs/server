@@ -7,21 +7,19 @@ using namespace std;
 
 
 static rleavrs::Logger::ptr g_logger = RLEAVRS_LOG_NAME("system");
-static atomic<int> x = 10000;
+static atomic<int> x = 10;
 
 static int k = 0;
 
 void test_fiber() {
     x--;
-    if(x == 0) {
-        RLEAVRS_LOG_DEBUG(g_logger) << GetCurrentMS();
-    }
+    RLEAVRS_LOG_WARN(g_logger) << x;
 }
 
 int main(int argc, char** argv) {
     RLEAVRS_LOG_DEBUG(g_logger) << "main";
-    rleavrs::Scheduler sc(2, false, "test");
-    for(int i = 0; i <= 10000; i++) {
+    rleavrs::Scheduler sc(2, true, "test");
+    for(int i = 0; i <= 10; i++) {
         sc.schedule(test_fiber);
     }
     RLEAVRS_LOG_DEBUG(g_logger) << "schedule";

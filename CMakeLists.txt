@@ -52,3 +52,6 @@ target_link_libraries(test_scheduler ${LIBS})
 
 add_executable(test_timers "test/test_timer.cc" ${SRC_FILE})
 target_link_libraries(test_timers ${LIBS})
+
+add_executable(test_echo_server "test/test_echo_server.cc" ${SRC_FILE})
+target_link_libraries(test_echo_server ${LIBS})
