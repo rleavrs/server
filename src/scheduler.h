@@ -35,8 +35,7 @@ protected:
     void setThis();
     bool hasIdleThread();
     void run();
-
-
+    
 private:
     class FiberAndThread {
     public:

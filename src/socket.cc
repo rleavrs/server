@@ -5,6 +5,15 @@
 #include "hook.h"
 #include "utility.h"
 #include <limits.h>
+#include <string>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <iostream>
+
 
 namespace rleavrs
 {
@@ -375,7 +384,8 @@ namespace rleavrs
         if (isConnected())
         {
             socklen_t len = from->getAddrLen();
-            return ::recvfrom(m_sock, buffer, length, flags, from->getAddr(), &len);
+            auto rt = ::recvfrom(m_sock, buffer, length, flags, from->getAddr(), &len);
+            return rt;
         }
         return -1;
     }

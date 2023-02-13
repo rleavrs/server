@@ -43,7 +43,7 @@ namespace rleavrs {
 
 static std::string demangle(const char* str);
 void Backtrace(std::vector<std::string>& bt, int size = 64, int skip = 1);
-std::string BacktraceToString(int size, int skip, const std::string& prefix);
+std::string BacktraceToString(int size = 64, int skip = 2, const std::string& prefix = "");
 pid_t GetThreadId();
 uint32_t GetFiberId();
 uint64_t GetCurrentMS();

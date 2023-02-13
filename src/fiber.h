@@ -44,8 +44,8 @@ public:
     void fiberSwapOut();
     void threadCall();
     void threadBack();
-    uint64_t getId() const;
-    State getState() const;
+    uint64_t getId() const { return m_id; }
+    State getState() const { return m_state; }
     
     static void SetThis(Fiber* f);
     static Fiber::ptr GetThis();

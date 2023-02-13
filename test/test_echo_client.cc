@@ -18,7 +18,6 @@ void run() {
     } 
     addr->setPort(port);
     auto sock = Socket::CreateUDP(addr);
-    RLEAVRS_LOG_INFO(g_logger) << "sock connecting";
     IOManager::GetThis()->schedule([sock]() {
         Address::ptr addr(new IPv4Address);
         while(true) {
@@ -31,11 +30,9 @@ void run() {
         }
     });
     
-    RLEAVRS_LOG_INFO(g_logger) << "client start work";
-
     // sleep(1);
     while(true) {
-        std::string line;
+        std::string line = "";
         std::cout << "input>";
         std::getline(std::cin, line);
         if(!line.empty()) {
@@ -61,8 +58,10 @@ int main (int argc, char** argv){
 
     ip = argv[1];
     port =  atoi(argv[2]);
-
-    IOManager iom(2);
+    IOManager iom(2,false);
+    iom.start();
     iom.schedule(run);
+    iom.stop();
+    
     return 0;
 }

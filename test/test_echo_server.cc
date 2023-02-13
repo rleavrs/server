@@ -6,7 +6,8 @@ using namespace rleavrs;
 static Logger::ptr g_logger = RLEAVRS_LOG_NAME("server");
 
 void run() {
-    IPAddress::ptr addr = Address::LookupAnyIPAddress("0.0.0.0:2345");
+    RLEAVRS_LOG_DEBUG(g_logger) << "run";
+    IPAddress::ptr addr = Address::LookupAnyIPAddress("0.0.0.0:1234");
     Socket::ptr sock = Socket::CreateUDP(addr);
 
     if(sock->bind(addr)) {
@@ -15,8 +16,10 @@ void run() {
         RLEAVRS_LOG_ERROR(g_logger) << "udp bind : " << *addr;
         return;
     }
+    RLEAVRS_LOG_FATAL(g_logger) << "debug";
 
     while(true) {
+        RLEAVRS_LOG_ERROR(g_logger) << "error" ;
         char buff[1024];
         Address::ptr from(new IPv4Address);
         int len = sock->recvFrom(buff, 1024, from);
@@ -33,7 +36,6 @@ void run() {
 }
 
 int main() {
-    IOManager iom(1);
+    IOManager iom(1,false);
     iom.schedule(run);
-    return 0;
 }

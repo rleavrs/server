@@ -108,7 +108,7 @@ std::ostream& LogFormatter::format(std::ostream& os, LogEvent::ptr event){
             case LogLevel::Level::DEBUG :   os << RED;break;
             case LogLevel::Level::WARNNING :    os << YELLOW;break;
             case LogLevel::Level::ERROR :   os << MAGENTA;break;
-            case LogLevel::Level::FATAL :   os << RED;break;
+            case LogLevel::Level::FATAL :   os << MAGENTA;break;
         }
         i->format(os,event);
     }
