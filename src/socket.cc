@@ -371,8 +371,7 @@ namespace rleavrs
         return -1;
     }
 
-    int Socket::recvFrom(void *buffer, size_t length, Address::ptr from, int flags)
-    {
+    int Socket::recvFrom(void *buffer, size_t length, Address::ptr from, int flags) {
         if (isConnected())
         {
             socklen_t len = from->getAddrLen();
